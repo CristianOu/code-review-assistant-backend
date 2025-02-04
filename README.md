@@ -2,7 +2,7 @@
 
 ## Create new conda environment:
 
-conda env create -f `<conda-environment.yml>` -n  ``<env-name>``
+conda env create -f `<conda-environment.yml>` -n `<env-name>`
 
 ## Run when new package is added:
 
@@ -35,4 +35,12 @@ Run the Docker Container
 ```
 docker run -d -p 10000:10000 ai-code-review-backend
 
+```
+
+Run backed locally:
+
+In /app folder:
+
+```
+fastapi dev main.py
 ```
