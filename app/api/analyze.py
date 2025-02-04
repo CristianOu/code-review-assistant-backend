@@ -12,7 +12,12 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 
 # Function to Generate Review Comments
 
-
+def generate_code_review_comment(diff):
+  prompt = f"Review the following code changes and provide constructive feedback:\n{diff}"
+  inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512)
+  outputs = model.generate(inputs.input_ids, max_length=100, num_return_sequences=1)
+  comment = tokenizer.decode(outputs[0], skip_special_tokens=True)
+  return comment
 
 @router.get("/pr")
 async def analyze_pr(owner: str, repo: str, pr_number: int, token: str = Header(...)):
