@@ -16,8 +16,6 @@ GITHUB_REDIRECT_URI = os.getenv("GITHUB_REDIRECT_URI")
 router = APIRouter()
 
 # 1️⃣ Initiate GitHub OAuth Login
-
-
 @router.get("/login")
 async def login():
     github_oauth_url = (
