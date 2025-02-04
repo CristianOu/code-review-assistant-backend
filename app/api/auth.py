@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 import httpx
 import os
 from dotenv import load_dotenv
+import certifi
 
 load_dotenv()
 
@@ -55,13 +56,22 @@ async def callback(code: str):
 
 # 3️⃣ Fetch Authenticated User Information (Optional)
 @router.get("/user")
-async def get_user_info(token: str):
+async def user(token: str):
+    token = token.strip()
     headers = {"Authorization": f"Bearer {token}"}
-    async with httpx.AsyncClient() as client:
-        response = await client.get("https://api.github.com/user", headers=headers)
+    print(f"headers: {headers}")
+    
+    try:
+        print("Before the request")
+        async with httpx.AsyncClient(verify=certifi.where()) as client:
+            response = await client.get("https://api.github.com/user", headers=headers)
+        print("After the request")
 
-    if response.status_code != 200:
-        raise HTTPException(
-            status_code=400, detail="Failed to fetch user info")
+        if response.status_code != 200:
+            raise HTTPException(status_code=400, detail="Failed to fetch user info")
 
-    return response.json()
+        return response.json()
+
+    except Exception as e:
+        print(f"Unexpected Error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
