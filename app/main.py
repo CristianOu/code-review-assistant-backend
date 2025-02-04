@@ -19,23 +19,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# IP Whitelisting Middleware
-ALLOWED_IPS = ["195.249.187.103"]  # Replace with your trusted IPs
-
-
-@app.middleware("http")
-async def restrict_ip_access(request: Request, call_next):
-    client_ip = request.client.host
-    print('client_ip', client_ip)
-
-    if client_ip not in ALLOWED_IPS:
-        raise HTTPException(
-            status_code=403, detail="Access Denied: IP Not Allowed")
-
-    response = await call_next(request)
-    return response
-
-
 @app.get("/")
 async def read_root():
     return {"message": "Welcome to the AI Code Review Backend!"}
