@@ -12,4 +12,4 @@ app.include_router(analyze.router, prefix="/analyze")
 
 @app.get("/")
 async def read_root():
-    return {"message": "Welcome to the AI Code Review Backend123!"}
+    return {"message": "Welcome to the AI Code Review Backend!"}
