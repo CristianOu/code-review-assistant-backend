@@ -31,7 +31,7 @@ def generate_code_review_comment(diff_hunk):
     model='meta-llama-3.1-70b-instruct',
     messages=messages,
     stream=False,
-    max_tokens=1024,  # Ensures concise yet informative reviews
+    max_tokens=512,  # Ensures concise yet informative reviews
     temperature=1,  # Reduces randomness, making feedback more factual
     top_p=0.8,  # Keeps responses focused while allowing some variation
     frequency_penalty=0.2,  # Minimizes repetitive phrases
