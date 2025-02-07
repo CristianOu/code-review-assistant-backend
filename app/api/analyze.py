@@ -172,7 +172,7 @@ async def analyze_pr(owner: str, repo: str, pr_number: int, token: str):
     return {"status": "AI Review submitted successfully!", "comments": comments}
 
   except httpx.HTTPStatusError as e:
-    print("GitHub API Response:", review_response.text)  # Full error details
+    # print("GitHub API Response:", review_response.text)  # Full error details
     print(f"GitHub API error: {e}")
     raise HTTPException(status_code=400, detail="Failed to fetch PR data")
   except Exception as e:
