@@ -96,8 +96,5 @@ response = client.chat.completions.create(
 	frequency_penalty=0.2,  # Minimizes repetitive phrases
 	presence_penalty=0.1,  # Encourages introduction of new ideas
 )
-
-# print('========RESPONSE========', response, '========RESPONSE========')
-
 print('==========Content==========', response.choices[0].message.content, '==========Content==========')
 
