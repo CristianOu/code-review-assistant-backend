@@ -1,10 +1,7 @@
-from fastapi import APIRouter, HTTPException, Header
-from transformers import AutoTokenizer, AutoModelForCausalLM
-import torch
+from fastapi import APIRouter, HTTPException
 import httpx
 import certifi
 import re
-from huggingface_hub import InferenceClient
 import os
 from friendli import Friendli
 
@@ -17,12 +14,7 @@ client = Friendli(token=api_token)
 # Dummy router for authentication
 router = APIRouter()
 
-# Check if GPU is available
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(f"Running on: {device}")
-
 # Function to Generate Review Comments
-
 def generate_code_review_comment(diff_hunk):
   prompt = f"Review these Git changes and provide concise feedback:\n{diff_hunk}"
   # Create the message payload
