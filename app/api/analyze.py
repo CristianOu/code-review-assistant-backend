@@ -157,7 +157,7 @@ async def analyze_pr(owner: str, repo: str, pr_number: int, token: str):
       "comments": comments
     }
 
-    print(f"Review Payload: {payload}")
+    # print(f"Review Payload: {payload}")
 
     # # Submit AI Review to GitHub
     headers = {
