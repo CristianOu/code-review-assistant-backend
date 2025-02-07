@@ -20,8 +20,8 @@ conda env update -n `<env-name>` --file `<conda-environment.yml>`
 
 [Installation](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/)
 
-Start server:
-in app folder run -> fastapi dev main.py
+Save libraries updates (project root level)
+pip freeze > requirements.txt
 
 Created docker image
 
