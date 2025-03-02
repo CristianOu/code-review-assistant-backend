@@ -57,13 +57,10 @@ async def callback(code: str):
 async def user(token: str):
     token = token.strip()
     headers = {"Authorization": f"Bearer {token}"}
-    print(f"headers: {headers}")
     
     try:
-        print("Before the request")
         async with httpx.AsyncClient(verify=certifi.where()) as client:
             response = await client.get("https://api.github.com/user", headers=headers)
-        print("After the request")
 
         if response.status_code != 200:
             raise HTTPException(status_code=400, detail="Failed to fetch user info")
